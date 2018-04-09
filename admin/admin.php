@@ -170,7 +170,7 @@
 			</button>
 		  </div>
 		  
-		  <form method="post" action="../db_connect/admin_login.php" onsubmit="return admin_login();">
+		  <form method="post" action="../db_connect/old/admin_login.php" onsubmit="return admin_login();">
 			  <div class="modal-body">
 				  <div class="form-group">
 					<label for="adminUsername">Username</label>
@@ -204,7 +204,7 @@
 			</button>
 		  </div>
 		  
-		  <form method="post" action="../db_connect/setTheme.php" onsubmit="return change_theme();">
+		  <form method="post" action="../db_connect/old/setTheme.php" onsubmit="return change_theme();">
 		  
 			  <div class="modal-body">
 				<div class="form-group">
@@ -257,7 +257,7 @@
 		  </div>
 		  
 		  <div class="modal-footer">
-			<form method="post" action="../db_connect/deleteData.php" onsubmit="return delete_data();">
+			<form method="post" action="../db_connect/old/deleteData.php" onsubmit="return delete_data();">
 				<button type="submit" class="btn btn-success">Yes, Delete Data</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 			</form>
@@ -303,8 +303,8 @@
 		if(user != "" && pass != "") {
 			$.ajax({
 				type:'post',
-				url:'../db_connect/admin_login.php',
-				data:{ do_login: "do_login", username: user, password: pass },
+				url:'../db_connect/info.php',
+				data:{ whatToDo: "adminLogin", do_login: "do_login", username: user, password: pass },
 				
 				success:	function(response) {
 								if(response=="success") {
@@ -328,8 +328,8 @@
 	function delete_data() {
 		$.ajax({
 			type:'post',
-			url:'../db_connect/deleteData.php',
-			data:{ },
+			url:'../db_connect/info.php',
+			data:{ whatToDo: "deleteData" },
 			
 			success:	function(response) {
 							if(response=="success") {
@@ -353,8 +353,8 @@
 		
 		$.ajax({
 			type:'post',
-			url:'../db_connect/setTheme.php',
-			data:{ theme: selectedTheme },
+			url:'../db_connect/info.php',
+			data:{ whatToDo: "setTheme", theme: selectedTheme },
 			
 			success:	function(response) {
 							$('#themeModal').modal('hide');

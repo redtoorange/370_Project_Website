@@ -241,7 +241,7 @@
 		(function() {
 
 			const BASENAME = 'TargetHunter';
-			const DEBUG_ENABLED = true;
+			const DEBUG_ENABLED = false;
 			const INDETERMINATE_STATUS_STEP_MS = 100;
 
 			var container = document.getElementById('container');
@@ -411,9 +411,9 @@
 		
 		jQuery.ajax({
 			type: "POST",
-			url: '../db_connect/getUserID.php',
+			url: '../db_connect/info.php',
 			dataType: 'json',
-			data: {ageSelect: age, inputSelect: input, skillSelect: skill },
+			data: { whatToDo: "generateID", ageSelect: age, inputSelect: input, skillSelect: skill },
 
 			success: 	function ( result ) {
 							currentID = result["ID"];
@@ -427,9 +427,9 @@
 		console.log("Uploading a target hit");
 		jQuery.ajax({
 			type: "POST",
-			url: '../db_connect/submitHit.php',
+			url: '../db_connect/info.php',
 			dataType: 'json',
-			data: {ID:i, number: n, time: t, misses: m, totalTargets: tars },
+			data: {whatToDo: "uploadHit", ID:i, number: n, time: t, misses: m, totalTargets: tars },
 
 			success: function (obj, textstatus) {
 						  if( !('error' in obj) ) {
@@ -447,9 +447,9 @@
 		console.log("Uploading Player Score");
 		jQuery.ajax({
 			type: "POST",
-			url: '../db_connect/submitScore.php',
+			url: '../db_connect/info.php',
 			dataType: 'json',
-			data: {ID:i, score: s },
+			data: { whatToDo: "uploadScore", ID:i, score: s },
 
 			success: function (obj, textstatus) {
 						  if( !('error' in obj) ) {
