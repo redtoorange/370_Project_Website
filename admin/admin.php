@@ -32,20 +32,17 @@
 
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
     <a class="navbar-brand mr-auto" href="index.html">Data Administration</a>
-    <button class="navbar-toggler navbar-toggler-right " type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-		<?php			
-			if( isset($_SESSION['username']) ){
-				echo '
-				<form method="post">
-					<button id="logoutButton" type="submit" name="logout" value="logout" class="btn btn-outline-danger my-2 my-sm-0">Logout</button>
-				</form>';
-			}
-			else{
-				echo '<button id="loginButton" class="btn btn-outline-success my-2 my-sm-0">Admin Login</button>';
-			}
-		?>
+	<?php			
+		if( isset($_SESSION['username']) ){
+			echo '
+			<form method="post">
+				<button id="logoutButton" type="submit" name="logout" value="logout" class="btn btn-outline-danger my-2 my-sm-0">Logout</button>
+			</form>';
+		}
+		else{
+			echo '<button id="loginButton" class="btn btn-outline-success my-2 my-sm-0">Admin Login</button>';
+		}
+	?>
   </nav>
 
   
@@ -63,11 +60,14 @@
 		<div class="row">
 			<div class="col">
 				<a class="btn btn-secondary" href="/admin/testFile.txt" role="button"  download> Download File </a>
+				
 				<?php
 					if( isset($_SESSION['username']) ){
+						echo '<button id="themeButton" type="button" class="btn btn-secondary">Change Themes</button>'."\n";
 						echo '<button id="deleteButton" type="button" class="btn btn-danger">Delete Data</button>';
 					}
 				?>
+				
 			</div>
 		</div> 
 	</div>
@@ -193,6 +193,54 @@
 	  </div>
 	</div>
 	
+	<!-- Theme Selector Modal -->
+	<div class="modal fade" id="themeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog" role="document">
+		<div class="modal-content">
+		  <div class="modal-header">
+			<h5 class="modal-title">Select Active Game Themes</h5>
+			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			  <span aria-hidden="true">&times;</span>
+			</button>
+		  </div>
+		  
+		  <form method="post" action="../db_connect/setTheme.php" onsubmit="return change_theme();">
+		  
+			  <div class="modal-body">
+				<div class="form-group">
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="themeSelect" id="bothThemes" value="both" checked>
+						<label class="form-check-label" for="bothThemes">
+							Both Themes
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="themeSelect" id="carnivalTheme" value="carnival">
+						<label class="form-check-label" for="carnivalTheme">
+							Carnival Theme
+						</label>
+					</div>
+					<div class="form-check">
+						<input class="form-check-input" type="radio" name="themeSelect" id="spaceTheme" value="space">
+						<label class="form-check-label" for="spaceTheme">
+							Space Theme
+						</label>
+					</div>
+				</div>
+			  </div>
+			  
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-dismiss="modal" >Cancel</button>
+				<button id="themeSubmit" type="submit" class="btn btn-primary">Submit</button>
+			  </div>
+			  
+		  </form>
+		</div>
+	  </div>
+	</div>
+	
+	
+	
 	<!-- Delete Button Modal -->
 	<div id="deleteModal" class="modal fade" tabindex="-1" role="dialog">
 	  <div class="modal-dialog" role="document">
@@ -207,9 +255,12 @@
 			<h4>Are you sure?</h4>
 			<p>You are about to delete all data.  <b>This action cannot be undone!</b></p>
 		  </div>
+		  
 		  <div class="modal-footer">
-			<button type="button" class="btn btn-success">Yes, Delete Data</button>
-			<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+			<form method="post" action="../db_connect/deleteData.php" onsubmit="return delete_data();">
+				<button type="submit" class="btn btn-success">Yes, Delete Data</button>
+				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+			</form>
 		  </div>
 		</div>
 	  </div>
@@ -220,9 +271,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	
-	
 	<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.16/datatables.min.js"></script>
+	
 	<script type="text/javascript">
 		// Load the table into jQueryDataTables
 		$(document).ready(function() {
@@ -239,11 +289,10 @@
 			$('#deleteModal').modal('show');
 		});
 		
-		/*
-		$('#loginSubmit').click(function(){
-			admin_login();
+		// Display data delete warning
+		$('#themeButton').click(function(){
+			$('#themeModal').modal('show');
 		});
-		*/
 	</script>
 	
 <script type="text/javascript">
@@ -274,6 +323,48 @@
 
 		return false;
 	}
+	
+	
+	function delete_data() {
+		$.ajax({
+			type:'post',
+			url:'../db_connect/deleteData.php',
+			data:{ },
+			
+			success:	function(response) {
+							if(response=="success") {
+								window.location.href="admin.php";
+							}
+						}
+		});
+		
+		return false;			
+	}
+	
+	function change_theme() {
+		var selectedTheme = "both";
+		
+		if( $("#carnivalTheme").is(":checked") ){
+			selectedTheme = "carnival";
+		}
+		if( $("#spaceTheme").is(":checked") ){
+			selectedTheme = "space";
+		}
+		
+		$.ajax({
+			type:'post',
+			url:'../db_connect/setTheme.php',
+			data:{ theme: selectedTheme },
+			
+			success:	function(response) {
+							$('#themeModal').modal('hide');
+						}
+		});
+		
+		return false;			
+	}
+
+		
 </script>
 	
   </div>
