@@ -27,11 +27,11 @@
             <state relative-caret-position="666">
               <caret line="171" column="5" lean-forward="false" selection-start-line="171" selection-start-column="5" selection-end-line="171" selection-end-column="5" />
               <folding>
-                <marker date="1523315738572" expanded="true" signature="837:976" ph="INSERT INTO `test_data`... " />
-                <marker date="1523315738572" expanded="true" signature="1775:1928" ph="UPDATE `test... " />
-                <marker date="1523315738572" expanded="true" signature="2255:2326" ph="UPDATE `test... " />
-                <marker date="1523315738572" expanded="true" signature="2597:2702" ph="UPDATE `game... " />
-                <marker date="1523315738572" expanded="true" signature="3412:3493" ph="SELECT * FRO... users" />
+                <marker date="1523316818946" expanded="true" signature="837:976" ph="INSERT INTO `test_data`... " />
+                <marker date="1523316818946" expanded="true" signature="1775:1928" ph="UPDATE `test... " />
+                <marker date="1523316818946" expanded="true" signature="2255:2326" ph="UPDATE `test... " />
+                <marker date="1523316818946" expanded="true" signature="2597:2702" ph="UPDATE `game... " />
+                <marker date="1523316818946" expanded="true" signature="3412:3493" ph="SELECT * FRO... users" />
               </folding>
             </state>
           </provider>
@@ -156,7 +156,7 @@
     <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1936" />
@@ -391,15 +391,15 @@
       <workItem from="1519837102397" duration="1407000" />
       <workItem from="1520258170628" duration="2603000" />
       <workItem from="1520389300789" duration="245000" />
-      <workItem from="1523314701694" duration="1504000" />
+      <workItem from="1523314701694" duration="2102000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12863000" />
+    <option name="totallyTimeSpent" value="13461000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cargo" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -707,11 +707,11 @@
         <state relative-caret-position="666">
           <caret line="171" column="5" lean-forward="false" selection-start-line="171" selection-start-column="5" selection-end-line="171" selection-end-column="5" />
           <folding>
-            <marker date="1523315738572" expanded="true" signature="837:976" ph="INSERT INTO `test_data`... " />
-            <marker date="1523315738572" expanded="true" signature="1775:1928" ph="UPDATE `test... " />
-            <marker date="1523315738572" expanded="true" signature="2255:2326" ph="UPDATE `test... " />
-            <marker date="1523315738572" expanded="true" signature="2597:2702" ph="UPDATE `game... " />
-            <marker date="1523315738572" expanded="true" signature="3412:3493" ph="SELECT * FRO... users" />
+            <marker date="1523316818946" expanded="true" signature="837:976" ph="INSERT INTO `test_data`... " />
+            <marker date="1523316818946" expanded="true" signature="1775:1928" ph="UPDATE `test... " />
+            <marker date="1523316818946" expanded="true" signature="2255:2326" ph="UPDATE `test... " />
+            <marker date="1523316818946" expanded="true" signature="2597:2702" ph="UPDATE `game... " />
+            <marker date="1523316818946" expanded="true" signature="3412:3493" ph="SELECT * FRO... users" />
           </folding>
         </state>
       </provider>
