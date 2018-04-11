@@ -411,7 +411,7 @@
 		
 		jQuery.ajax({
 			type: "POST",
-			url: '../db_connect/getUserID.php',
+			url: '../db_connect/info.php',
 			dataType: 'json',
 			data: { whatToDo: "generateID", ageSelect: age, inputSelect: input, skillSelect: skill },
 
