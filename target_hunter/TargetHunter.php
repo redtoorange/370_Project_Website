@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<!DOCTYPE HTML>
+<html>
 <head>
-	<meta charset="utf-8" />
-	<title>Target Hunter</title>
+    <title>Target Hunter</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	
@@ -411,7 +412,7 @@
 		
 		jQuery.ajax({
 			type: "POST",
-			url: '../db_connect/info.php',
+			url: '../db_connect/databaseController.php',
 			dataType: 'json',
 			data: { whatToDo: "generateID", ageSelect: age, inputSelect: input, skillSelect: skill },
 
@@ -427,7 +428,7 @@
 		console.log("Uploading a target hit");
 		jQuery.ajax({
 			type: "POST",
-			url: '../db_connect/info.php',
+			url: '../db_connect/databaseController.php',
 			dataType: 'json',
 			data: {whatToDo: "uploadHit", ID:i, number: n, time: t, misses: m, totalTargets: tars },
 
@@ -447,7 +448,7 @@
 		console.log("Uploading Player Score");
 		jQuery.ajax({
 			type: "POST",
-			url: '../db_connect/info.php',
+			url: '../db_connect/databaseController.php',
 			dataType: 'json',
 			data: { whatToDo: "uploadScore", ID:i, score: s },
 

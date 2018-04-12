@@ -19,11 +19,11 @@
   <!-- Custom Styling -->
   <link href="css/admin.css" rel="stylesheet">
   <?php
-	session_start();
-	
-	if(isset($_POST['logout'])) {
-		unset($_SESSION['username']);
-	}
+		session_start();
+		
+		if(isset($_POST['logout'])) {
+			unset($_SESSION['username']);
+		}
   ?>
 
   
@@ -37,7 +37,8 @@
 			echo '
 			<form method="post">
 				<button id="logoutButton" type="submit" name="logout" value="logout" class="btn btn-outline-danger my-2 my-sm-0">Logout</button>
-			</form>';
+			</form>
+			';
 		}
 		else{
 			echo '<button id="loginButton" class="btn btn-outline-success my-2 my-sm-0">Admin Login</button>';
@@ -109,7 +110,7 @@
               </tfoot>
               <tbody>
 				<?php
-					require "../db_connect/info.php";
+					require "../db_connect/createConnection.php";
 					
 					//function to create a table
 					$conn = ConnectToDB();
@@ -170,7 +171,7 @@
 			</button>
 		  </div>
 		  
-		  <form method="post" action="../db_connect/old/admin_login.php" onsubmit="return admin_login();">
+		  <form method="post" action="../db_connect/databaseController.php" onsubmit="return admin_login();">
 			  <div class="modal-body">
 				  <div class="form-group">
 					<label for="adminUsername">Username</label>
@@ -204,7 +205,7 @@
 			</button>
 		  </div>
 		  
-		  <form method="post" action="../db_connect/old/setTheme.php" onsubmit="return change_theme();">
+		  <form method="post" action="../db_connect/databaseController.php" onsubmit="return change_theme();">
 		  
 			  <div class="modal-body">
 				<div class="form-group">
@@ -257,7 +258,7 @@
 		  </div>
 		  
 		  <div class="modal-footer">
-			<form method="post" action="../db_connect/old/deleteData.php" onsubmit="return delete_data();">
+			<form method="post" action="../db_connect/databaseController.php" onsubmit="return delete_data();">
 				<button type="submit" class="btn btn-success">Yes, Delete Data</button>
 				<button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
 			</form>
@@ -303,7 +304,7 @@
 		if(user != "" && pass != "") {
 			$.ajax({
 				type:'post',
-				url:'../db_connect/info.php',
+				url:'../db_connect/databaseController.php',
 				data:{ whatToDo: "adminLogin", do_login: "do_login", username: user, password: pass },
 				
 				success:	function(response) {
@@ -328,7 +329,7 @@
 	function delete_data() {
 		$.ajax({
 			type:'post',
-			url:'../db_connect/info.php',
+			url:'../db_connect/databaseController.php',
 			data:{ whatToDo: "deleteData" },
 			
 			success:	function(response) {
@@ -353,7 +354,7 @@
 		
 		$.ajax({
 			type:'post',
-			url:'../db_connect/info.php',
+			url:'../db_connect/databaseController.php',
 			data:{ whatToDo: "setTheme", theme: selectedTheme },
 			
 			success:	function(response) {

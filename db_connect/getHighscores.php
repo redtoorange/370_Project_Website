@@ -1,6 +1,6 @@
 <?php
 	// Import the DB connection script
-	require "info.php";
+	require "createConnection.php";
 					
 	//function to create a table
 	$conn = ConnectToDB();

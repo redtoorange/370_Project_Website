@@ -86,7 +86,7 @@
 
 
 <script>
-	<!-- Animate the loading of the page -->
+	//Animate the loading of the page
     if ('addEventListener' in window) {
         window.addEventListener('load', function () {
             document.body.className = document.body.className.replace(/\bis-loading\b/, '');
@@ -94,7 +94,7 @@
         document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
     }
 
-	<!-- Validate that all the inputs are filled -->
+	//Validate that all the inputs are filled
     $(function () {
         //Set button disabled
         $("input[type=submit]").attr("disabled", "disabled");

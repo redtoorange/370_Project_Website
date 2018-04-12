@@ -1,2 +1,3 @@
 *.wasm
-info.php
+createConnection.php
+/db_connect/old/*
