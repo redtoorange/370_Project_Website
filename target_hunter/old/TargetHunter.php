@@ -437,7 +437,7 @@
 							console.log(obj.result);
 						  }
 						  else {
-							  console.log(obj.error);
+							console.log(obj.error);
 						  }
 					}
 		});
@@ -457,7 +457,7 @@
 							console.log(obj.result);
 						  }
 						  else {
-							  console.log(obj.error);
+							console.log(obj.error);
 						  }
 					}
 		});
