@@ -9,11 +9,11 @@ include_once "createConnection.php";
 	/**
      * Upload some data into the DB
      */
-    function InsertData( $mouse, $age_group, $level )
+    function InsertData( $mouse, $age_group, $level, $theme )
     {
 		// Get the connection
         $conn = ConnectToDB();
-        $query = "INSERT INTO `test_data` (`ID`, `input`, `age`, `skill`, `score`) VALUES (NULL, '" . $mouse . "', '" . $age_group . "', '" . $level . "', 0);";
+        $query = "INSERT INTO `test_data` (`ID`, `input`, `age`, `skill`, `theme`, `score`) VALUES (NULL, '" . $mouse . "', '" . $age_group . "', '" . $level . "', '" . $theme . "', 0 );";
 		
 		// Ensure the query was successful
         $valid = $conn->query( $query );
@@ -37,7 +37,7 @@ include_once "createConnection.php";
     function getUserID()
     {
         // Insert the data into the DB
-        $ID = InsertData( $_POST["inputSelect"], $_POST["ageSelect"], $_POST["skillSelect"]);
+        $ID = InsertData( $_POST["inputSelect"], $_POST["ageSelect"], $_POST["skillSelect"], $_POST["usedTheme"]);
 
         // Print the ID that was obtained
         echo json_encode(

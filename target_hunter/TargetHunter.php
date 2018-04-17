@@ -394,12 +394,11 @@
 		})();
 	//]]>
 	
-
 	var ready = false;
 	var currentID = -1;
 	
 	<?php
-		require "../db_connect/getThemes.php";
+		include_once "../db_connect/getThemes.php";
 
 		echo "var age   = '" . $_POST["ageSelect"]   . "';\n";
 		echo "var input = '" . $_POST["inputSelect"] . "';\n";
@@ -411,15 +410,16 @@
 		return currentID;
 	}
 	
-	function generateID(){
+	function generateID( t ){
 		id = -1;
 		
+		console.log( age + " " + input + " " + skill + " " + t);
 		jQuery.ajax({
 			type: "POST",
 			url: '../db_connect/databaseController.php',
 			dataType: 'json',
-			data: { whatToDo: "generateID", ageSelect: age, inputSelect: input, skillSelect: skill },
-
+			data: { whatToDo: "generateID", ageSelect: age, inputSelect: input, skillSelect: skill, usedTheme: t },
+			
 			success: 	function ( result ) {
 							currentID = result["ID"];
 							console.log("Finished Fetching ID");
@@ -469,7 +469,6 @@
 	function exit(){
 		window.location.href = "../index.html";
 	}
-	
 	</script>
 </body>
 </html>

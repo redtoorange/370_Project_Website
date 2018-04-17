@@ -107,6 +107,14 @@
 						</select>
 					</div>
 
+					<div class="form-group mr-2">
+						<select name="themeSelect" id="themeSelect" class="form-control">
+							<option value="">Theme Used</option>
+							<option value="Space">Space</option>
+							<option value="Carnival">Carnival</option>
+						</select>
+					</div>
+
 					<button id="filterSubmit" type="submit" class="btn btn-secondary mr-2">Apply Filter</button>
 					<button id="filterClear" type="submit" class="btn btn-danger">Clear Filters</button>
 					</form>
@@ -143,8 +151,9 @@
                   <th>Input</th>
                   <th>Age</th>
                   <th>Skill</th>
-                  <th>Score</th>
-				  <th>Targets Hit</th>
+									<th>Score</th>
+									<th>Theme</th>
+				  				<th>Targets Hit</th>
                 </tr>
               </thead>
               
@@ -161,9 +170,10 @@
 					$inputFilter = isset( $_POST["inputSelect"]) && $_POST["inputSelect"] != "";
 					$ageFilter = isset( $_POST["ageSelect"]) && $_POST["ageSelect"] != "";
 					$skillFilter = isset( $_POST["skillSelect"]) && $_POST["skillSelect"] != "";
+					$themeFilter = isset( $_POST["themeSelect"]) && $_POST["themeSelect"] != "";
 
 					// If there are any filters, then add the elements to the query
-					if( $inputFilter || $ageFilter || $skillFilter ){
+					if( $inputFilter || $ageFilter || $skillFilter || $themeFilter ){
 						$query .= "WHERE ";
 
 						if( $inputFilter ){
@@ -182,6 +192,13 @@
 	
 						if( $skillFilter ){
 							$query .= "`skill` = '".$_POST["skillSelect"]."' ";
+
+							if( $themeFilter)
+								$query .= " AND ";
+						}
+
+						if( $themeFilter ){
+							$query .= "`theme` = '".$_POST["themeSelect"]."' ";
 						}
 					}
 
@@ -197,7 +214,7 @@
 					$fo = fopen($myFile, 'w') or die("can't open file");
 
 					// Create an Array of the col names from the DB
-					$columns = array("ID", "input", "age", "skill", "score", "Targets");
+					$columns = array("ID", "input", "age", "skill", "score", "theme", "Targets");
 					
 					// Create an Array to hold all the rows from the DB
 					$rows = array();
@@ -230,7 +247,8 @@
                   <th>Input</th>
                   <th>Age</th>
                   <th>Skill</th>
-                  <th>Score</th>
+									<th>Score</th>
+									<th>Theme</th>
 				  				<th>Targets Hit</th>
                 </tr>
 							</tfoot>
@@ -368,6 +386,7 @@
 			$("#inputSelect").val("<?php if(isset($_POST["inputSelect"]) ){echo $_POST["inputSelect"];} ?>");
 			$("#ageSelect").val("<?php if(isset($_POST["ageSelect"]) ){echo $_POST["ageSelect"];} ?>");
 			$("#skillSelect").val("<?php if(isset($_POST["skillSelect"]) ){echo $_POST["skillSelect"];} ?>");
+			$("#themeSelect").val("<?php if(isset($_POST["themeSelect"]) ){echo $_POST["themeSelect"];} ?>");
 		});
 		
 		// Display Login Panel
@@ -390,6 +409,7 @@
 				$("#inputSelect").val("");
 				$("#ageSelect").val("");
 				$("#skillSelect").val("");
+				$("#themeSelect").val("");
 		});
 
 		// Handle login ajax call
