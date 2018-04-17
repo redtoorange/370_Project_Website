@@ -19,7 +19,8 @@
   <!-- Custom Styling -->
   <link href="css/admin.css" rel="stylesheet">
 	<?php
-		require "../db_connect/getUserCount.php";
+		include_once "../db_connect/getThemes.php";
+		include_once "../db_connect/getUserCount.php";
 		
 		session_start();
 		
@@ -475,6 +476,24 @@
 				';
 			}
 		?>
+
+			$(document).ready(function(){
+				<?php
+					//require "../db_connect/getThemes.php";
+
+					echo 'var theme = "'. getTheme() .'";';
+				?>
+
+				if( theme == "Carnival" ){
+					$("#carnivalTheme").prop("checked", true);
+				}
+				else if( theme == "Space" ){
+					$("#spaceTheme").prop("checked", true);
+				}
+				else{
+					$("#bothThemes").prop("checked", true);
+				}
+			});		
 		
 </script>
 

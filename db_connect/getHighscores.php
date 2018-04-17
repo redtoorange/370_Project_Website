@@ -1,6 +1,11 @@
 <?php
+/*
+ *	Iteration 3 Data Controller Script
+ *  Andrew McGuiness and Ryan Kelley
+*/
+
 	// Import the DB connection script
-	require "createConnection.php";
+	include_once "createConnection.php";
 					
 	//function to create a table
 	$conn = ConnectToDB();

@@ -1,9 +1,15 @@
 <?php
-	
-	
+/*
+ *	Iteration 3 Data Controller Script
+ *  Andrew McGuiness and Ryan Kelley
+*/
+
+	/**
+	 * 
+	 */
 	function getTheme(){
 		// Import the DB connection script
-		require "createConnection.php";
+		include_once "databaseController.php";
 
 		//function to create a table
 		$conn = ConnectToDB();
@@ -14,5 +20,4 @@
 
 		return $result->fetch_assoc()["AvailableThemes"];
 	}
-	
 ?>

@@ -1,7 +1,14 @@
 <?php
+/*
+ *	Iteration 3 Data Controller Script
+ *  Andrew McGuiness and Ryan Kelley
+*/
 
+    /**
+     * 
+     */
     function getUserCount(){
-        require "databaseController.php";
+        include_once "databaseController.php";
 
         $connect = ConnectToDB();
 
