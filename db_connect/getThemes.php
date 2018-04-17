@@ -1,13 +1,18 @@
 <?php
-	// Import the DB connection script
-	require "createConnection.php";
-					
-	//function to create a table
-	$conn = ConnectToDB();
+	
+	
+	function getTheme(){
+		// Import the DB connection script
+		require "createConnection.php";
 
-	// Query Data from the DB
-	$query = 'SELECT * FROM `game_preferences` WHERE `ID` = 1';
-	$result = $conn->query($query);
+		//function to create a table
+		$conn = ConnectToDB();
 
-	echo json_encode($result->fetch_assoc());
+		// Query Data from the DB
+		$query = 'SELECT * FROM `game_preferences` WHERE `ID` = 1';
+		$result = $conn->query($query);
+
+		return $result->fetch_assoc()["AvailableThemes"];
+	}
+	
 ?>

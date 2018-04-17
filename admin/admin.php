@@ -18,7 +18,9 @@
   
   <!-- Custom Styling -->
   <link href="css/admin.css" rel="stylesheet">
-  <?php
+	<?php
+		require "../db_connect/getUserCount.php";
+		
 		session_start();
 		
 		if(isset($_POST['logout'])) {
@@ -111,6 +113,12 @@
 			</div>
 	</div>
 
+	<br/>
+
+	<?php
+		
+		echo "Active Users: " . getUserCount();
+	?>
 	
 	<!-- End Data Controls -->
   
@@ -141,8 +149,7 @@
               
               <tbody>
 				<?php
-					require "../db_connect/createConnection.php";
-					
+
 					// Create the connection to the DB
 					$conn = ConnectToDB();
 
@@ -285,19 +292,19 @@
 			  <div class="modal-body">
 				<div class="form-group">
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="themeSelect" id="bothThemes" value="both" checked>
+						<input class="form-check-input" type="radio" name="themeSelect" id="bothThemes" value="Both" checked>
 						<label class="form-check-label" for="bothThemes">
 							Both Themes
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="themeSelect" id="carnivalTheme" value="carnival">
+						<input class="form-check-input" type="radio" name="themeSelect" id="carnivalTheme" value="Carnival">
 						<label class="form-check-label" for="carnivalTheme">
 							Carnival Theme
 						</label>
 					</div>
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="themeSelect" id="spaceTheme" value="space">
+						<input class="form-check-input" type="radio" name="themeSelect" id="spaceTheme" value="Space">
 						<label class="form-check-label" for="spaceTheme">
 							Space Theme
 						</label>
@@ -444,13 +451,13 @@
 			if( isset($_SESSION["username"]) ){
 				echo '
 		function change_theme() {
-			var selectedTheme = "both";
+			var selectedTheme = "Both";
 			
 			if( $("#carnivalTheme").is(":checked") ){
-				selectedTheme = "carnival";
+				selectedTheme = "Carnival";
 			}
 			if( $("#spaceTheme").is(":checked") ){
-				selectedTheme = "space";
+				selectedTheme = "Space";
 			}
 			
 			$.ajax({

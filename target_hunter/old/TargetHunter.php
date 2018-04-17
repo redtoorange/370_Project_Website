@@ -394,13 +394,17 @@
 		})();
 	//]]>
 	
+
 	var ready = false;
 	var currentID = -1;
 	
 	<?php
+		require "../db_connect/getThemes.php";
+
 		echo "var age   = '" . $_POST["ageSelect"]   . "';\n";
 		echo "var input = '" . $_POST["inputSelect"] . "';\n";
 		echo "var skill = '" . $_POST["skillSelect"] . "';\n";
+		echo "var theme = '" . getTheme() . "';\n";
 	?>
 	
 	function getID(){
@@ -423,8 +427,7 @@
 		});
 	}
 	
-	function uploadTargetHit( i, n, t, m, tars)
-	{
+	function uploadTargetHit( i, n, t, m, tars){
 		console.log("Uploading a target hit");
 		jQuery.ajax({
 			type: "POST",
@@ -443,8 +446,7 @@
 		});
 	}
 	
-	function uploadScore( i, s )
-	{
+	function uploadScore( i, s ){
 		console.log("Uploading Player Score");
 		jQuery.ajax({
 			type: "POST",
@@ -461,6 +463,11 @@
 						  }
 					}
 		});
+	}
+
+	// 
+	function exit(){
+		window.location.href = "../index.html";
 	}
 	</script>
 </body>
