@@ -1,39 +1,45 @@
 <!--
-	Iteration 0 Prototype Homepage
-	Andrew McGuiness and Ryan Kelley
+/*
+ *  ITEC 370: Spring 2018
+ *	Final Code: Homepage
+ *  Andrew McGuiness, Andrew Albanese, Ryan Kelley, Michael Hall
+ *	
+ * Original design by:
+ *	Identity by HTML5 UP
+ *	html5up.net | @ajlkn
+ *	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+*/
 -->
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>Target Hunter</title>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    
-    <link rel="stylesheet" href="assets/css/main.css"/>
-    <script src="assets/js/jquery-3.3.1.min.js"></script>
 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!--  Style sheet used as a template from https://html5up.net/identity -->
+    <link rel="stylesheet" href="assets/css/main.css"/>
 </head>
+
 <body class="is-loading">
 
-
 <div id="wrapper">
-    
-
     <section id="main">
-	
-		<!-- Placeholder until we find a nice icon -->
+        
+        <!-- Display the balloon picture -->
         <header>
             <span class="avatar">
-                <img src="images/avatar2.png" alt=""/>
+                <img src="images/logo.png" alt=""/>
             </span>
             <h1>Target Hunter</h1>
         </header>
         
         
-		<!-- Form to accept the user's information -->
-        <!-- <form method="post" action="submitData.php"> -->
+        <!-- Begin input form -->
         <form method="post" action="target_hunter/TargetHunter.php">
-            
+            <!-- Input Selector -->
             <div class="field">
                 <div class="select-wrapper">
                     <select name="inputSelect" id="inputSelect">
@@ -45,6 +51,7 @@
                 </div>
             </div>
             
+            <!-- Age Selector -->
             <div class="field">
                 <div class="select-wrapper">
                     <select name="ageSelect" id="ageSelect">
@@ -57,6 +64,7 @@
                 </div>
             </div>
             
+            <!-- Skill level selector -->
             <div class="field">
                 <div class="select-wrapper">
                     <select name="skillSelect" id="skillSelect">
@@ -71,22 +79,18 @@
             
             <!-- Submit the information to the DB script -->
             <ul class="actions">
-                <li>
-                    <input id="submitButton" class="button" type="submit" value="Submit" disabled>
-                </li>
+                <li><input id="submitButton" class="button" type="submit" value="Submit" disabled></li>
             </ul>
-        
         </form>
+        <!-- End of the Input Form -->
         
         <hr/>
     </section>
-
 </div>
 
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script>
-	//Animate the loading of the page
+    //Animate the loading of the page, based on code from https://html5up.net/identity
     if ('addEventListener' in window) {
         window.addEventListener('load', function () {
             document.body.className = document.body.className.replace(/\bis-loading\b/, '');
@@ -94,37 +98,32 @@
         document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
     }
 
-	//Validate that all the inputs are filled
+    //Validate that all the inputs are filled
     $(function () {
         //Set button disabled
         $("input[type=submit]").attr("disabled", "disabled");
 
         //Whenever a select is changed, execute
         $("select").change(function () {
-		
             var valid = false;
 
-            if (
-                $("#ageSelect").val() != ""
+            // Make sure none of the selectors are empty
+            if ($("#ageSelect").val() != ""
                 &&
                 $("#skillSelect").val() != ""
                 &&
-                $("#inputSelect").val() != ""
-            ) {
+                $("#inputSelect").val() != "") {
+                // They are all filled, so the form is in a valid state
                 valid = true;
             }
 
-            //If form is validated enable form
-            if (valid)
+            //If form is validated enable the submit button
+            if (valid) {
                 $("input[type=submit]").removeAttr("disabled");
-
+            }
         });
     })
-
-   
-
 </script>
 
-<script src="assets/js/jquery-3.3.1.min.js"></script>
 </body>
 </html>

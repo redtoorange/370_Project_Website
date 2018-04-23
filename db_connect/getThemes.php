@@ -1,23 +1,28 @@
 <?php
-/*
- *	Iteration 3 Data Controller Script
- *  Andrew McGuiness and Ryan Kelley
+/**
+ *  ITEC 370: Spring 2018
+ *	Final Code: Theme Query
+ *  Andrew McGuiness, Andrew Albanese, Ryan Kelley, Michael Hall
 */
 
-	/**
-	 * 
-	 */
-	function getTheme(){
-		// Import the DB connection script
-		include_once "databaseController.php";
+/**
+ * Get the currently available themes from the database.  This can be changed
+ * by the Administator from the Admin Panel.
+ */
+function getTheme()
+{
+    // Import the DB connection script
+    include_once "databaseController.php";
 
-		//function to create a table
-		$conn = ConnectToDB();
+    //Connect to the DB
+    $conn = ConnectToDB();
 
-		// Query Data from the DB
-		$query = 'SELECT * FROM `game_preferences` WHERE `ID` = 1';
-		$result = $conn->query($query);
+    // Query Data from the DB
+    $query = 'SELECT * FROM `game_preferences` WHERE `ID` = 1';
+    $result = $conn->query($query);
 
-		return $result->fetch_assoc()["AvailableThemes"];
-	}
+    // Return just the text for what is available: "Space", "Carnival" or "Both"
+    return $result->fetch_assoc()["AvailableThemes"];
+}
+
 ?>

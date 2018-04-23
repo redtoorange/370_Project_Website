@@ -1,21 +1,27 @@
 <?php
-/*
- *	Iteration 3 Data Controller Script
- *  Andrew McGuiness and Ryan Kelley
+/**
+ *  ITEC 370: Spring 2018
+ *	Final Code: Active Record Query
+ *  Andrew McGuiness, Andrew Albanese, Ryan Kelley, Michael Hall
 */
 
-    /**
-     * 
-     */
-    function getUserCount(){
-        include_once "databaseController.php";
+/**
+ * Get the number of currently active records in the database.  This will give
+ * a rough estimate of how many people are currently playing the game.
+ */
+function getUserCount()
+{
+    include_once "databaseController.php";
 
-        $connect = ConnectToDB();
+    // Connect to the DB
+    $connect = ConnectToDB();
 
-        $query = "select * from test_data where LastSeem > date_sub(now(), interval 3 minute)";
-        $result = $connect->query( $query );
+    // Query recently active records
+    $query = "select * from test_data where LastSeem > date_sub(now(), interval 3 minute)";
+    $result = $connect->query($query);
 
-        return $result->num_rows;
-    }
-    
+    // Return the number of rows that we got back
+    return $result->num_rows;
+}
+
 ?>
