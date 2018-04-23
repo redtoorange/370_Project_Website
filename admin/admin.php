@@ -124,10 +124,11 @@
 
 	<br/>
 
-	<?php
-		
-		echo "Active Users: " . getUserCount();
-	?>
+	<div class="row">
+		<div class="col ml-4">
+			<h3> Currently Active Records: <?php echo getUserCount(); ?> </h3>
+		</div>
+	</div>
 	
 	<!-- End Data Controls -->
   
